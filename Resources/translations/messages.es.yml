@@ -1,0 +1,24 @@
+Editor: Editor
+Router: Rutas
+Routes: 'Lista de rutas'
+'Save changes': 'Guardar cambios'
+Translations: Traducciones
+Default: 'Por defecto'
+'Reset to defaults': 'Restaurar configuración inicial'
+Parameters: Parámetros
+Main: Principal
+Database: 'Base de datos'
+Original: 'Original'
+Mail: 'Mail'
+Admin: 'Panel de administración'
+Social: 'Social'
+SEO: 'SEO'
+Cache: 'Cache'
+Others: 'Otros'
+Site: 'Sitio'
+Tasks: 'Tareas'
+'Admin editor': 'Admin editor'
+Analytics: 'Analytics'
+'Parameters editor': 'Editor de parámetros'
+'Router editor': 'Editor de rutas'
+'Translations editor': 'Editor de traducciones'

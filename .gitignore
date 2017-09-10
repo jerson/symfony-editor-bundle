@@ -1,0 +1,6 @@
+/vendor/
+/.idea/
+*.php~
+*.log
+*.sql
+*.bak

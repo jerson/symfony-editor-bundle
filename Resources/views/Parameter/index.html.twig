@@ -1,0 +1,185 @@
+{% extends admin_pool.getTemplate('layout') %}
+
+{% block title %}{{ 'Parameters editor' | trans }}{% endblock %}
+{% block list_filters_actions %}
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">{{ 'Parameters editor' | trans }}</a>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+    <form action="{{ path('editor_parameter') }}" method="post">
+
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs" role="tablist">
+
+                {% set i = 0 %}
+                {% for name, parameters in groups %}
+
+                    <li class="{{ i ==0 ? 'active' : '' }}">
+                        <a href="#tab_route_{{ i }}" data-toggle="tab">
+                            <i class="fa fa-exclamation-circle has-errors hide" aria-hidden="true"></i>
+                            {{ name | title | trans }}
+                        </a>
+                    </li>
+                    {% set i = i +1 %}
+                {% endfor %}
+
+
+            </ul>
+            <div class="tab-content">
+
+                {% set i = 0 %}
+                {% for name, parameters in groups %}
+
+
+                    <div class="tab-pane fade {{ i ==0 ? 'in active' : '' }}" id="tab_route_{{ i }}">
+
+                        <div class="box-body  container-fluid">
+                            <div class="sonata-ba-collapsed-fields">
+
+                                <div class="row">
+
+                                    <div class="col-md-12">
+                                        <div class="box box-primary">
+                                            <div class="box-header">
+                                                <h4 class="box-title">
+                                                    {{ name | title | trans }}
+                                                </h4>
+                                            </div>
+                                            <div class="box-body">
+                                                <div class="sonata-ba-collapsed-fields">
+
+                                                    {% for index,parameter in parameters %}
+                                                        {% set isCheckbox = parameter.type is defined and parameter.type == 'checkbox' %}
+                                                        {% set isSelect = parameter.type is defined and parameter.type == 'select' %}
+                                                        <div class="form-group col-md-6 col-lg-4">
+
+                                                            {% if isCheckbox %}
+                                                                <div class="checkbox">
+                                                                    <label class="">
+                                                                        <div class="icheckbox_square-blue">
+                                                                            <input type="{{ parameter.type }}"
+                                                                                    {{ parameter.value ? 'checked ':'' }}
+                                                                                   name="parameters[{{ parameter.name }}]"
+                                                                                   id="{{ parameter.name }}"
+                                                                                   value="1">
+
+                                                                        </div>
+                                                                        <span class="control-label__text">{{ parameter.name | title | trans }}</span>
+
+                                                                    </label>
+                                                                    <span class="help-block sonata-ba-field-help">
+                                                                        <div>
+                                                                            {{ 'Default' | trans }}
+                                                                            : <strong>{{ parameter.default ? 'true' : 'false' }}</strong>
+                                                                        </div>
+                                                                    </span>
+
+
+                                                                </div>
+
+
+                                                            {% elseif isSelect %}
+                                                                <label class="control-label"
+                                                                       for="{{ parameter.name }}">{{ parameter.name | title | trans }}
+                                                                    :</label>
+
+                                                                <div class="input-group col-xs-12">
+
+                                                                    <select name="parameters[{{ parameter.name }}]"
+                                                                            id="{{ parameter.name }}"
+                                                                            class="form-control">
+                                                                        {#//TODO usar key#}
+                                                                        {% for key, option in parameter.options %}
+                                                                            <option {{ option==parameter.value ? ' selected ' : '' }}
+                                                                                    value="{{ option }}">{{ option | title | trans }}</option>
+                                                                        {% endfor %}
+                                                                    </select>
+                                                                </div>
+
+
+                                                                <span class="help-block sonata-ba-field-help"><div>{{ 'Default' | trans }}
+                                                                        : <strong>{{ parameter.default ?  parameter.default : '<empty>' }}</strong></div></span>
+                                                            {% else %}
+                                                                <label class="control-label"
+                                                                       for="{{ parameter.name }}">{{ parameter.name | title | trans }}
+                                                                    :</label>
+
+                                                                <div class="input-group col-xs-12">
+
+                                                                    <input type="{{ parameter.type }}"
+                                                                           name="parameters[{{ parameter.name }}]"
+                                                                           value="{{ parameter.value }}"
+                                                                           class="form-control"
+                                                                           id="{{ parameter.name }}">
+                                                                </div>
+
+
+                                                                <span class="help-block sonata-ba-field-help"><div>{{ 'Default' | trans }}
+                                                                        : <strong>{{ parameter.default ?  parameter.default : '<empty>' }}</strong></div></span>
+                                                            {% endif %}
+
+                                                            {% if parameter.help is not empty %}
+                                                                <span class="help-block sonata-ba-field-help"><div>{{ parameter.help | trans }}</div></span>
+                                                            {% endif %}
+
+                                                        </div>
+
+                                                    {% endfor %}
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    {% set i = i +1 %}
+                {% endfor %}
+
+
+            </div>
+        </div>
+
+
+        <div class="sonata-ba-form-actions well well-small form-actions">
+            <button type="submit" class="btn btn-success">
+                <i class="fa fa-save"></i>
+                {{ 'Save changes' | trans }}
+            </button>
+            <a class="btn btn-danger" href="{{ path('editor_parameter_reset') }}">
+                <i class="fa fa-repeat" aria-hidden="true"></i>
+                {{ 'Reset to defaults' | trans }}
+            </a>
+        </div>
+
+    </form>
+
+    <script>
+        $(document).ready(function () {
+            var $form = $('.content-wrapper form');
+
+            $form.on('submit', function (e) {
+                e.preventDefault();
+                var url = $(this).attr('action');
+                var $submit = $('button[type=submit]', $form);
+                var originalHTML = $submit.html();
+                var data = $form.serialize();
+                $submit.html('...');
+                $submit.attr('disabled', true);
+                $.post(url, data, function () {
+                    $submit.removeAttr('disabled');
+                    $submit.html(originalHTML)
+                });
+            });
+
+        })
+    </script>
+{% endblock %}

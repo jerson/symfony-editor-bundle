@@ -1,0 +1,135 @@
+{% extends admin_pool.getTemplate('layout') %}
+
+{% block title %}{{ 'Router editor' | trans }}{% endblock %}
+{% block list_filters_actions %}
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">{{ 'Router editor' | trans }}</a>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+    <form action="{{ path('editor_router') }}" method="post">
+
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs" role="tablist">
+
+                {% set i = 0 %}
+                {% for bundle, collection in collections %}
+
+                    <li class="{{ i ==0 ? 'active' : '' }}">
+                        <a href="#tab_route_{{ i }}" data-toggle="tab">
+                            <i class="fa fa-exclamation-circle has-errors hide" aria-hidden="true"></i>
+                            {{ bundle | title | trans }}
+                        </a>
+                    </li>
+                    {% set i = i +1 %}
+                {% endfor %}
+
+
+            </ul>
+            <div class="tab-content">
+
+                {% set i = 0 %}
+                {% for bundle, collection in collections %}
+
+
+
+                    <div class="tab-pane fade {{ i ==0 ? 'in active' : '' }}" id="tab_route_{{ i }}">
+
+                        <div class="box-body  container-fluid">
+                            <div class="sonata-ba-collapsed-fields">
+
+                                <div class="row">
+
+                                    <div class="col-md-12">
+                                        <div class="box box-primary">
+                                            <div class="box-header">
+                                                <h4 class="box-title">
+                                                    {{ 'Routes' | trans }}
+                                                </h4>
+                                            </div>
+                                            <div class="box-body">
+                                                <div class="sonata-ba-collapsed-fields">
+
+                                                    {% for name,route in collection.items %}
+
+                                                        {% set original = route.defaults.original is defined ? route.defaults.original : null %}
+                                                        {% set help = route.defaults.help is defined ? route.defaults.help : null %}
+                                                        {% if original is not empty %}
+                                                            <div class="form-group col-md-6 col-lg-4">
+                                                                <label class="control-label"
+                                                                       for="{{ name }}">{{ name | title | trans }}
+                                                                    :</label>
+
+                                                                <div class="input-group col-xs-12">
+                                                                    <span class="input-group-addon">/</span>
+                                                                    <input type="text" name="{{ bundle }}[{{ name }}]"
+                                                                           value="{{ route.path | ltrim('/') }}"
+                                                                           class="form-control" id="{{ name }}">
+                                                                </div>
+                                                                <span class="help-block sonata-ba-field-help"><div>{{ 'Default' | trans }}
+                                                                        : <strong>{{ original | ltrim('/') }}</strong></div></span>
+
+                                                                {% if help is not empty %}
+                                                                    <span class="help-block sonata-ba-field-help"><div>{{ help | trans }}</div></span>
+                                                                {% endif %}
+
+                                                            </div>
+                                                        {% endif %}
+
+                                                    {% endfor %}
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    {% set i = i +1 %}
+                {% endfor %}
+
+
+            </div>
+        </div>
+
+
+        <div class="sonata-ba-form-actions well well-small form-actions">
+            <button type="submit" class="btn btn-success">
+                <i class="fa fa-save"></i>
+                {{ 'Save changes' | trans }}
+            </button>
+            <a class="btn btn-danger" href="{{ path('editor_router_reset') }}">
+                <i class="fa fa-repeat" aria-hidden="true"></i>
+                {{ 'Reset to defaults' | trans }}
+            </a>
+        </div>
+
+    </form>
+    <script>
+        $(document).ready(function () {
+            var $form = $('.content-wrapper form');
+
+            $form.on('submit', function (e) {
+                e.preventDefault();
+                var url = $(this).attr('action');
+                var $submit = $('button[type=submit]', $form);
+                var originalHTML = $submit.html();
+                var data = $form.serialize();
+                $submit.html('...');
+                $submit.attr('disabled', true);
+                $.post(url, data, function () {
+                    $submit.removeAttr('disabled');
+                    $submit.html(originalHTML)
+                });
+            });
+
+        })
+    </script>
+{% endblock %}

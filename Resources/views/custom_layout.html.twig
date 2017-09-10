@@ -1,0 +1,40 @@
+{% extends '@SonataAdmin/standard_layout.html.twig' %}
+
+{% block side_bar_after_nav %}
+
+    <ul class="sidebar-menu">
+        <li class="treeview">
+            <a href="#">
+                <i class="fa fa-folder"></i><span>{{ 'Editor' | trans }}</span>
+                <span class="pull-right-container">
+            <i class="fa pull-right fa-angle-left"></i>
+        </span>
+            </a>
+            <ul class="active treeview-menu menu_level_1">
+
+                <li class="first">
+                    <a href="{{ path('editor_parameter') }}">
+                        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                        {{ 'Parameters' | trans }}
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('editor_router') }}">
+                        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                        {{ 'Router' | trans }}
+                    </a>
+                </li>
+                <li class="last">
+                    <a href="{{ path('editor_translator') }}">
+                        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                        {{ 'Translations' | trans }}
+                    </a>
+                </li>
+
+
+            </ul>
+
+        </li>
+    </ul>
+
+{% endblock %}

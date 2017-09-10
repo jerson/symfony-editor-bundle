@@ -1,0 +1,5 @@
+services:
+    site.twig.editor_utils:
+         class:  EditorBundle\Twig\Extension\EditorUtilsExtension
+         tags:
+             - { name: twig.extension }
