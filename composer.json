@@ -12,6 +12,6 @@
         "php": ">=5.5.9",
         "sonata-project/admin-bundle": "^3.13",
         "symfony/framework-bundle": "^3.3",
-        "twig/twig": "^2.4"
+        "twig/twig": "^1.0||^2.0"
     }
 }

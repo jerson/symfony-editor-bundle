@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1db2d733b7051955fbda2adeba54712b",
+    "content-hash": "799f883e4e6535af548ef457264e40d8",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -594,16 +594,16 @@
         },
         {
             "name": "paragonie/random_compat",
-            "version": "v2.0.10",
+            "version": "v2.0.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "634bae8e911eefa89c1abfbf1b66da679ac8f54d"
+                "reference": "5da4d3c796c275c55f057af5a643ae297d96b4d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/634bae8e911eefa89c1abfbf1b66da679ac8f54d",
-                "reference": "634bae8e911eefa89c1abfbf1b66da679ac8f54d",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/5da4d3c796c275c55f057af5a643ae297d96b4d8",
+                "reference": "5da4d3c796c275c55f057af5a643ae297d96b4d8",
                 "shasum": ""
             },
             "require": {
@@ -638,7 +638,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2017-03-13T16:27:32+00:00"
+            "time": "2017-09-27T21:40:39+00:00"
         },
         {
             "name": "psr/cache",
@@ -931,33 +931,38 @@
         },
         {
             "name": "sonata-project/block-bundle",
-            "version": "3.3.2",
+            "version": "3.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataBlockBundle.git",
-                "reference": "7cdf6e5620696cdd962eb4c404beeedaf20c3570"
+                "reference": "052f1eb4b84951eb6c25acaf52787346845fc6d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataBlockBundle/zipball/7cdf6e5620696cdd962eb4c404beeedaf20c3570",
-                "reference": "7cdf6e5620696cdd962eb4c404beeedaf20c3570",
+                "url": "https://api.github.com/repos/sonata-project/SonataBlockBundle/zipball/052f1eb4b84951eb6c25acaf52787346845fc6d3",
+                "reference": "052f1eb4b84951eb6c25acaf52787346845fc6d3",
                 "shasum": ""
             },
             "require": {
                 "doctrine/common": "^2.3",
                 "php": "^5.3 || ^7.0",
                 "sonata-project/cache": "^1.0",
-                "sonata-project/core-bundle": "^3.0",
+                "sonata-project/core-bundle": "^3.4",
                 "symfony/form": "^2.3 || ^3.0",
                 "symfony/http-kernel": "^2.3 || ^3.0"
             },
+            "conflict": {
+                "jms/di-extra-bundle": "<1.7.0"
+            },
             "require-dev": {
+                "jms/di-extra-bundle": "^1.7",
                 "knplabs/knp-menu-bundle": "^2.0",
                 "sllh/php-cs-fixer-styleci-bridge": "^2.0",
-                "sonata-project/admin-bundle": "^3.0",
+                "sonata-project/admin-bundle": "^3.22",
                 "symfony/phpunit-bridge": "^2.7 || ^3.0"
             },
             "suggest": {
+                "jms/di-extra-bundle": "Annotations for Block definition",
                 "knplabs/knp-menu-bundle": "^2.0",
                 "sonata-project/cache-bundle": "^3.0"
             },
@@ -999,7 +1004,7 @@
                 "block",
                 "sonata"
             ],
-            "time": "2017-03-23T12:54:15+00:00"
+            "time": "2017-09-19T15:14:45+00:00"
         },
         {
             "name": "sonata-project/cache",
@@ -1066,16 +1071,16 @@
         },
         {
             "name": "sonata-project/core-bundle",
-            "version": "3.4.0",
+            "version": "3.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataCoreBundle.git",
-                "reference": "a1b837101262af856c45b22e8f0887553edf0fb0"
+                "reference": "a8cc1731d832e6bde3fdad2334cfd158d1d45fbb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataCoreBundle/zipball/a1b837101262af856c45b22e8f0887553edf0fb0",
-                "reference": "a1b837101262af856c45b22e8f0887553edf0fb0",
+                "url": "https://api.github.com/repos/sonata-project/SonataCoreBundle/zipball/a8cc1731d832e6bde3fdad2334cfd158d1d45fbb",
+                "reference": "a8cc1731d832e6bde3fdad2334cfd158d1d45fbb",
                 "shasum": ""
             },
             "require": {
@@ -1141,7 +1146,7 @@
             "keywords": [
                 "sonata"
             ],
-            "time": "2017-05-09T15:05:32+00:00"
+            "time": "2017-09-20T14:14:38+00:00"
         },
         {
             "name": "sonata-project/datagrid-bundle",
@@ -3479,16 +3484,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v2.4.3",
+            "version": "v2.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "eab7c3288ae6603d7d6f92b531626af2b162d1f2"
+                "reference": "eddb97148ad779f27e670e1e3f19fb323aedafeb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/eab7c3288ae6603d7d6f92b531626af2b162d1f2",
-                "reference": "eab7c3288ae6603d7d6f92b531626af2b162d1f2",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/eddb97148ad779f27e670e1e3f19fb323aedafeb",
+                "reference": "eddb97148ad779f27e670e1e3f19fb323aedafeb",
                 "shasum": ""
             },
             "require": {
@@ -3541,7 +3546,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-06-07T18:47:58+00:00"
+            "time": "2017-09-27T18:10:31+00:00"
         }
     ],
     "packages-dev": [],
